@@ -66,7 +66,7 @@ class HCanvas extends Canvas {
     }  // end paint()
 
 
-    //***********************************************************************************************
+    /***********************************************************************************************/
 
     private void drawH(Graphics graphics, double xMid, double yMid, double length)
     {
