@@ -23,6 +23,8 @@ package drawhdemo;
 
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class DrawHdemo {
 
@@ -49,7 +51,7 @@ public class DrawHdemo {
 class HCanvas extends Canvas {
 
 
-    // // HCanvas() constructor
+    // HCanvas() constructor
     public HCanvas() {
     }
 
@@ -81,68 +83,16 @@ class HCanvas extends Canvas {
         
     }  // end paint()
 
-    public void drawHorizontal(Graphics graphics, double xMid, double yMid, double length )
-    {
-        // find left endpoint
-        double x1 = xMid - (length / 2);
-        double y1 = yMid;
-
-        // find right endpoint
-        double x2 = xMid + (length / 2);
-        double y2 = yMid;
-
-       if (length > 5)
-        {
-        // draw a line from (x1,y1) to (x2,y2)
-        graphics.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
-
-        // draw a vertical line with left end of horizontal as  midpoint of new line
-        drawVertical(graphics, x1, y1, (length) );
-
-        // draw a vertical line with right end of horizontal as  midpoint of new line
-        drawVertical(graphics, x2, y2, (length) );
-
-
-
-        }//end if
-
-    } // end drawHorizontal()
-
-    public void drawVertical(Graphics graphics, double xMid, double yMid, double length )
-    {
-        // find upper endpoint
-        double x1 = xMid;
-        double y1 = yMid - (length / 2);
-
-        // right lower endpoint
-        double x2 = xMid;
-        double y2 = yMid + (length / 2);
-
-
-       if (length > 5)
-        {
-        // draw a line from (x1,y1) to (x2,y2)
-        graphics.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
-
-        // draw a 1/2 size horizontal line with top end of vertical as  midpoint of new line
-        drawHorizontal(graphics, x1, y1, (length/2) );
-
-        // draw a 1/2 horizontal line with bottom end of vertical as  midpoint of new line
-        drawHorizontal(graphics, x2, y2, (length/2) );
-        }
-
-    } // end drawVertical()
-
 
     //***********************************************************************************************
 
-    public void drawH(Graphics graphics, double xMid, double yMid, double length )
+    public void drawH(Graphics graphics, double xMid, double yMid, double length)
     {
         // find horizontal left endpoint
         double x1 = xMid - (length / 2);
         double y1 = yMid;
 
-        // find right horzontal endpoint
+        // find horizontal right endpoint
         double x2 = xMid + (length / 2);
         double y2 = yMid;
 
@@ -159,7 +109,7 @@ class HCanvas extends Canvas {
         double x5 = x2;
         double y5 = yMid - (length / 2);
 
-        // right upper right vertical endpoint
+        // find upper right vertical endpoint
         double x6 = x2;
         double y6 = yMid + (length / 2);
 
@@ -169,15 +119,23 @@ class HCanvas extends Canvas {
         if (length > 5)
         {
             graphics.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             graphics.drawLine((int) x3, (int) y3, (int) x4, (int) y4);
+            try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
             graphics.drawLine((int) x5, (int) y5, (int) x6, (int) y6);
 
             drawH(graphics,(int) x3, (int) y3,(length/2));
             drawH(graphics,(int) x4, (int) y4,(length/2));
             drawH(graphics,(int) x5, (int) y5,(length/2));
             drawH(graphics,(int) x6, (int) y6,(length/2));
-
-
 
 
 
